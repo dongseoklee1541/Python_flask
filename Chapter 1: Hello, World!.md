@@ -29,3 +29,14 @@ redirect('/index') : /index 로 이동해라.
 
 * url_for() : URL을 동적으로 생성하는 메서드
 
+# CH.04 DataBase
+
+* $flask db init : 마이그레이션 저장소 생성
+
+* $flask db migrate : 데이터베이스를 변경하지 않고 마이그레이션 스크립트만 생성
+
+* $flask db upgrade : 변경 사항을 데이터베이스에 적용, MYSQL, Postgre 와 같이 DB server 작업시 실행하기 전에 데이터베이스를 DB server에 생성해야 함
+
+* $flas db downgrade : 
+
+
