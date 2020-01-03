@@ -45,4 +45,4 @@ redirect('/index') : /index 로 이동해라.
 * werkzeug.security : 비밀번호를 특정 알고리즘을 통해 해쉬로 바꾸어 보안성을 높일 수 있는 패키지
   * generate_password_hash(args) : 를 통해 args을 해쉬값으로 바꾸어 반환해준다. 해쉬값은 매번 바뀌므로 해쉬값을 통해서 원래의 값을 알 수는 없다.
   
-
+* filter_by
