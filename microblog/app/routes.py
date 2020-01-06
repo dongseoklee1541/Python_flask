@@ -84,7 +84,7 @@ def user(username):
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm()
+    form = EditProfileForm(current_user.username)
 	# submit을 post로 요청했을 경우
     if form.validate_on_submit():
         current_user.username = form.username.data
