@@ -17,3 +17,4 @@ class Config(object):
 	MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
 	MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 	ADMINS = ['your-email@example.com'] # 오류보고서를 수신할 이메일 주소 목록
+	POSTS_PER_PAGE = 25
