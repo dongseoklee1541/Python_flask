@@ -86,3 +86,10 @@ FROM user, followers
 WHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1]
 [parameters: (3,)]
 (Background on this error at: http://sqlalche.me/e/e3q8)
+2020-01-08 10:14:29,063 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:48]
+2020-01-08 10:15:32,554 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:48]
+2020-01-08 10:15:50,216 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:48]
+2020-01-08 10:16:19,845 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:48]
+2020-01-08 10:17:10,789 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:48]
+2020-01-08 11:00:46,046 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:50]
+2020-01-08 11:02:15,488 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:50]
