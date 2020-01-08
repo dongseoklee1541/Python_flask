@@ -60,3 +60,11 @@ redirect('/index') : /index 로 이동해라.
 
 * user.followed_posts().paginate(1, 20, False).items : 1페이지부터~ 20페이지까지, 지정된 페이지를 넘어간다면
 True인 경우 404에러를 보내지만 False 인 경우 빈 화면을 내보낸다.
+
+# CH.12 I18n(국제화) and L10n(지역화)
+
+* from flask_babel import lazy_gettext as _l : 번역을 위해 텍스트를 추출(gettext)를 사용할때는 '_'을 사용하는 것이 convenction이다. 여기서는 lazy_gettext 를 사용하여 '_l'로 사용한다.
+
+```python
+from flask_babel import lazy_gettext as _l
+login.login_message = _l('Please log in to accesss this page.')
