@@ -68,3 +68,11 @@ True인 경우 404에러를 보내지만 False 인 경우 빈 화면을 내보�
 ```python
 from flask_babel import lazy_gettext as _l
 login.login_message = _l('Please log in to accesss this page.')
+```
+
+* pybabel extract -F babel.cfg -k _l -o messages.pot . : pybabel extract는 명령에서 지정된 구성 파일을 읽는다. -F 옵션을 선택한 다음,
+명령에 지정된 디렉토리에서 시작해 소스와 일치하는 디렉토리의 모든 코드 및 템플릿 파일을 검색한다. 
+
+기본적으로 pybabel은 '_' 를 텍스트 마크로 읽지만 여기서는 lazy_gettxet를 사용했기에 '_l'로 찾으라고 해야 한다. (-k _l)
+
+-o meesages.pot 은 출력파일을 messages.pot 으로 출력하라는 의미이다.
