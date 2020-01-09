@@ -1,3 +1,4 @@
 # Welcome to Microblog!
 
-This is an example application featured in my [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). See the tutorial for instructions on how to work with it.
+플라스크 메가 튜토리얼([Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). )을 실습하면서 저장하는 공간입니다.
+
