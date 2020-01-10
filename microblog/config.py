@@ -16,6 +16,7 @@ class Config(object):
 	MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
 	MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
 	MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+	MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
 	ADMINS = ['your-email@example.com'] # 오류보고서를 수신할 이메일 주소 목록
 	POSTS_PER_PAGE = 25
 	LANGUAGES = 'ko'

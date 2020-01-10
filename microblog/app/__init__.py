@@ -57,6 +57,6 @@ if not app.debug: # running without debug mode
 @babel.localeselector
 def get_locale():
 	#return request.accept_languages.best_match(app.config['LANGUAGES'])
-	return 'es'
+	return 'ko'
 
 from app import routes,models,errors # to avoid reciprocal imports 'app'
