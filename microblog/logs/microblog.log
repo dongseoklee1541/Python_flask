@@ -74,3 +74,4 @@ AttributeError: 'function' object has no attribute 'User'
 2020-01-09 18:01:25,156 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
 2020-01-09 18:01:53,895 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
 2020-01-09 18:01:59,760 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
+2020-01-10 09:57:27,572 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
