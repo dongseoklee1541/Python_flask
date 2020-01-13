@@ -4,11 +4,12 @@ This module will define the stsructure of the database.
 from datetime import datetime
 from hashlib import md5
 from app import db, login
+from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from time import time
 import jwt
-from app import app
+
 
 followers = db.Table(
     'followers',

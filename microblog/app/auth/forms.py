@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
-    email = StringField(_l('Email'), validators=[DataRequired()],Email())
+    email = StringField(_l('Email'), validators=[DataRequired(),Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
     password2 = PasswordField(
     _l('Repaet Password'), validators=[DataRequired(), EqualTo('password')])
@@ -30,7 +30,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(_('Please use a different email address.'))
 
 class ResetPasswordRequestForm(FlaskForm):
-    email = StringField(_l('Email'), validators=[DataRequired()],Email())
+    email = StringField(_l('Email'), validators=[DataRequired(),Email()])
     submit = SubmitField(_l('Register'))
 
 class ResetPasswordForm(FlaskForm):

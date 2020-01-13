@@ -1,7 +1,7 @@
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
-from flask import Flask, request
+from flask import Flask, request, current_app
 from flask_babel import Babel, lazy_gettext as _l
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -16,7 +16,7 @@ babel = Babel()
 bootstrap = Bootstrap()
 db = SQLAlchemy() # db : database
 migrate = Migrate()
-momnent = Moment()
+Moment = Moment()
 login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message = _l('Please log in to aceess this page.')
@@ -31,7 +31,7 @@ def create_app(config_class=Config):
 	login.init_app(app)
 	mail.init_app(app)
 	bootstrap.init_app(app)
-	moment.init_app(app)
+	Moment.init_app(app)
 	babel.init_app(app)
 	"""
 	To register a blueprint, the register_blueprint() method of the Flask application instance is used.
@@ -82,7 +82,7 @@ def create_app(config_class=Config):
 
 @babel.localeselector
 def get_locale():
-	return request.accept_languages.best_match(app.config['LANGUAGES'])
+	return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 	#return 'ko'
 
-from app import routes,models # to avoid reciprocal imports 'app'
+from app import models # to avoid reciprocal imports 'app'

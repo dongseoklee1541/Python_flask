@@ -3,8 +3,10 @@ SQLALCHEMY_DATABASE_URI = location of the app's db
 """
 
 import os
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir,'.env')) # app을 시작할때 .env파일을 실행
 
 class Config(object):
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-nerver-guess'

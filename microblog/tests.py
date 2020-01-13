@@ -6,15 +6,19 @@ from app.models import User, Post
 from config import Config
 
 class TestConfig(Config):
-    TESTING = True
+    TESTING = True # if the app needs to determine if it is running under unit tests or not.
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 class UserModelCase(unittest.TestCase):
+"""
+setUp(), tearDown(), these two methods to create and destroy a brand new
+application for each test
+"""
     def setUp(self):
         self.app = create_app(TestConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.create_all() # create all the database tables.
+        db.create_all() # before create all the database tables
 
     def tearDown(self):
         db.session.remove()

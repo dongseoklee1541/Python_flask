@@ -9,6 +9,7 @@ from app.auth.forms import LoginForm, RegistrationForm, \
 from app.models import User
 from app.auth.email import send_password_reset_email
 
+
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -17,11 +18,12 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash(_('Invalid username or password')
+            flash(_('Invalid username or password'))
             return redirect(url_for('auth.login'))
+
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
-        if not next_page or url_parse(next.page).netloc != '':
+        if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.index')
         return redirect(next_page)
     return render_template('auth/login.html',title=_('Sign In'), form=form)
@@ -31,6 +33,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
 
 @bp.route('/register',methods=['GET','POST'])
 def register():
@@ -46,6 +49,7 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html',title=_('Register'), form=form)
 
+
 @bp.route('/reset_password_request', methods=['GET','POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -56,7 +60,7 @@ def reset_password_request():
         if user:
             send_password_reset_email(user)
         flash(
-        _('Check your email for the instructions to reset your password'))
+            _('Check your email for the instructions to reset your password'))
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password_request.html',
                             title=_('Reset Password'), form=form)
