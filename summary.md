@@ -46,8 +46,22 @@ redirect('/index') : /index 로 이동해라.
 
 * werkzeug.security : 비밀번호를 특정 알고리즘을 통해 해쉬로 바꾸어 보안성을 높일 수 있는 패키지
   * generate_password_hash(args) : 를 통해 args을 해쉬값으로 바꾸어 반환해준다. 해쉬값은 매번 바뀌므로 해쉬값을 통해서 원래의 값을 알 수는 없다.
-  
-* filter_by
+  * check_password_hash : 해쉬값과 비밀번호를 입력받아 같으면 True, 다르면 False 를 출력하는 메소드
+```
+>>> from werkzeug.security import generate_password_hash
+>>> hash = generate_password_hash('foobar')
+>>> hash
+'pbkdf2:sha256:50000$vT9fkZM8$04dfa35c6476acf7e788a1b5b3c35e217c78dc04539d295f011f01f18cd2175f'
+```
+```
+>>> from werkzeug.security import check_password_hash
+>>> check_password_hash(hash, 'foobar')
+True
+>>> check_password_hash(hash, 'barfoo')
+False
+```
+
+* filter_by : 결과는 일치하는 사용자 이름을 가진 객체 만을 포함하는 쿼리다.
 
 
 # CH.07 Error Handling
