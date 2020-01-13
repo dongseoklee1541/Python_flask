@@ -1,3 +1,4 @@
+from elasticserach import Elasticserach
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
@@ -25,6 +26,8 @@ mail = Mail()
 def create_app(config_class=Config):
 	app = Flask(__name__)
 	app.config.from_object(config_class)
+	app.elasticserach =  Elasticserach([app.config['ELASTICSEARCH_URL']]) \
+		if app.config['ELASTICSEARCH_URL'] else None
 
 	db.init_app(app)
 	migrate.init_app(app, db)

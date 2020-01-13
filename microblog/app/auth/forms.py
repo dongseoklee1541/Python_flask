@@ -18,12 +18,12 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField(
     _l('Repaet Password'), validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField(_l('Register'))
-
+# 기존의 username과 중복되는 user로 가입할려 하는가?
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError(_('Please use a different username.'))
-
+# 이메일은?
     def validate_email(self, email):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:

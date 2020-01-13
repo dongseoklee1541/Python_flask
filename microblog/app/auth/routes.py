@@ -12,7 +12,7 @@ from app.auth.email import send_password_reset_email
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: # current_user : comes from Flask-Login
         return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -20,8 +20,8 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash(_('Invalid username or password'))
             return redirect(url_for('auth.login'))
-
-        login_user(user, remember=form.remember_me.data)
+# username, password are both correct,
+        login_user(user, remember=form.remember_me.data) # current_user에 해당 사용자로 설정됨
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.index')

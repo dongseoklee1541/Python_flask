@@ -82,7 +82,7 @@ class User(UserMixin, db.Model): # db.Model : a base model from Flask-SQLAlchemy
         return User.query.get(id)
 
 
-@login.user_loader
+@login.user_loader #user의 고유 아이디를 찾아서 반환하는 메서드
 def load_user(id):
     return User.query.get(int(id))
 
@@ -93,6 +93,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     language = db.Column(db.String(5))
+    __searchable__ = ['body']
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
