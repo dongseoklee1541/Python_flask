@@ -4,6 +4,7 @@ This module will define the stsructure of the database.
 from datetime import datetime
 from hashlib import md5
 from app import db, login
+from app.search import add_to_index, remove_from_index, query_index
 from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -86,8 +87,45 @@ class User(UserMixin, db.Model): # db.Model : a base model from Flask-SQLAlchemy
 def load_user(id):
     return User.query.get(int(id))
 
+class SearchableMixin(object): # cls.__tablename__는 여기서 index로 활용됨
+    @classmethod
+    def search(cls, expression, page, per_page):
+        ids, total = query_index(cls.__tablename__, expression, page, per_page)
+        if total==0:
+            return cls.query.filter_by(id=0), 0
+        when = []
+        for i in range(len(ids)):
+            when.append((ids[i], i))
+        return cls.query.filter(cls.id.in_(ids)).order_by(db.case(when, value=cls.id)), total
+            # search() function은 id의 리스트를 대체하는 쿼리와 전체 검색결과의 수를 반환한다
 
-class Post(db.Model):
+    @classmethod
+    def before_commit(cls, session):
+        session._changes = {
+            'add': list(session.new),
+            'update': list(session.dirty),
+            'delete': list(session.deleted)
+        }
+
+    @classmethod
+    def after_commit(cls, session):
+        for obj in session._changes['add']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj.__tablename__, obj)
+        for obj in session._changes['update']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj.__tablename__, obj)
+        for obj in session._changes['delete']:
+            if isinstance(obj, SearchableMixin):
+                remove_from_index(obj.__tablename__, obj)
+        session._changes = None
+
+    @ classmethod
+    def reindex(cls): # add_to_index 는 똑같은 index 번호를 호출하면 수정된다
+        for obj in cls.query:
+            add_to_index(cls.__tablename__, obj)
+
+class Post(SearchableMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -97,3 +135,7 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
+db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
+# SQLAlchemy가 메소드를 각각 호출하게 하는 이벤트 헨들러 역할

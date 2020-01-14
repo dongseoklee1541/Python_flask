@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_babel import _, lazy_gettext as _l
+from flask import request
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Length
 from app.models import User
@@ -24,3 +25,19 @@ class EditProfileForm(FlaskForm):
 class PostForm(FlaskForm):
 	post = TextAreaField(_l('Say something'),validators=[DataRequired()])
 	submit = SubmitField(_l('Submit'))
+
+class SearchForm(FlaskForm):
+	q = StringField(_l('Search'), validators=[DataRequired()])
+
+	def __init__(self, *args, **kwargs):
+		if 'formdata' not in kwargs: # formdata : Flask-WTF가 form submission을 얻는 위치를 정한다
+			kwargs['formdata'] = request.args
+			"""
+			기본값은 request.form 이지만 GET request를 사용할 경우 request.args를 사용해야 한다.
+			"""
+		if 'csrf_enabled' not in kwargs:
+			kwargs['csrf_enabled'] = False
+			"""
+			For clickable search links to work, CSRF needs to be disabled.
+			"""
+		super(SearchForm, self).__init__(*args, **kwargs)

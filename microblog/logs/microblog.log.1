@@ -1,4 +1,4 @@
-2020-01-09 11:30:16,481 ERROR: Exception on /reset_password_request [POST] [in c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py:1891]
+2020-01-14 17:42:52,499 ERROR: Exception on /auth/login [GET] [in c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,67 +12,68 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 1935, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\routes.py", line 25, in reset_password_request
-    user.User.query.filter_by(email=form.email.data).first()
-AttributeError: 'function' object has no attribute 'User'
-2020-01-09 11:30:29,849 ERROR: Exception on /reset_password_request [POST] [in c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\auth\routes.py", line 29, in login
+    return render_template('auth/login.html',title=_('Sign In'), form=form)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\routes.py", line 25, in reset_password_request
-    user.User.query.filter_by(email=form.email.data).first()
-AttributeError: 'function' object has no attribute 'User'
-2020-01-09 13:03:33,666 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 13:04:07,853 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 13:32:35,086 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 13:32:47,441 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:43:23,391 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:43:47,250 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:44:32,382 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:45:01,448 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:45:16,598 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:45:39,735 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:45:48,862 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:49:18,106 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:49:49,454 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:50:03,270 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:51:18,669 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:51:41,258 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:51:53,037 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:53:06,997 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:53:26,192 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:53:41,495 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:53:48,320 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:54:07,972 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:54:26,841 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:54:43,665 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:54:53,923 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:57:05,508 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:57:15,359 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:57:25,246 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:57:40,727 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 14:57:59,296 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:01:16,986 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:01:21,667 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:02:35,756 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:02:39,917 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:03:57,033 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:04:46,507 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 15:05:30,666 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 17:59:08,246 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 18:00:41,630 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 18:01:25,156 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 18:01:53,895 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-09 18:01:59,760 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-10 09:57:27,572 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:55]
-2020-01-13 13:14:09,822 INFO: Microblog startup [in C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\__init__.py:77]
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\templates\base.html", line 40, in template
+    {% end if %}
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\templates\auth\login.html", line 11, in root
+    <span style="color: red;">[{{ error }}]</span>
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 591, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\vuno\srv\learing.python\python\mypy\microblog\app\templates\base.html", line 40, in template
+    {% end if %}
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 268, in parse_block
+    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 212, in parse_if
+    node.body = self.parse_statements(('name:elif', 'name:else',
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 144, in parse_statement
+    self.fail_unknown_tag(token.value, token.lineno)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 97, in fail_unknown_tag
+    return self._fail_ut_eof(name, self._end_token_stack, lineno)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 90, in _fail_ut_eof
+    self.fail(' '.join(message), lineno)
+  File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 59, in fail
+    raise exc(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'end'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.

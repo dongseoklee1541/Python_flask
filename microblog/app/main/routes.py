@@ -4,17 +4,23 @@ from flask import render_template, flash, redirect, url_for, request, g, \
 from flask_babel import _, get_locale
 from flask_login import current_user, login_required
 from app import db
-from app.main.forms import EditProfileForm, PostForm
+from app.main.forms import EditProfileForm, PostForm, SearchForm
 from app.models import User, Post
 from app.translate import translate
 from guess_language import guess_language
 from app.main import bp
 
-@bp.before_request
+
+@bp.before_app_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        g.search_form = SearchForm()
+        """
+        flask.g : provided by Flask is a place where the application
+        can store data that needs to persist through the life of a request.
+        """
     g.locale = str(get_locale())
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -131,3 +137,25 @@ def translate_text(): #jsonify : converts the dict to a JSON
     return jsonify({'text': translate(request.form['text'],
                                       request.form['source_language'],
                                       request.form['dest_language'])})
+
+
+"""
+form.validate_on_submit(): to check if the form submission was valid.
+그러나 위의 방식은 POST 일때만 가능하다. 그래서 데이터 submit 방식을 확인하지 않는 메서드인
+form.validate() 를 사용한다. if the validation fails, it is because the user
+submitted an empty search form, that case I just redirect to the explore page.
+"""
+@bp.route('/search')
+@login_required
+def search():
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(g.search_form.q.data, page,
+                                current_app.config['POSTS_PER_PAGE'])
+    next_url = url_for('main.search', q=g.search_form.q.data, page=page + 1) \
+        if total > page * current_app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
+        if page > 1 else None
+    return render_template('search.html', title=_('Search'), posts=posts,
+                            next_url=next_url, prev_url=prev_url)
