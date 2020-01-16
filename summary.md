@@ -1,3 +1,46 @@
+# 웹 개발 이해 및 용어 정리
+하나의 웹서버가 여러개의 앱을 서비스하는건 문제가 없다.(포트 번호만 다르게 만든다면 큰 문제 없음)
+
+* web application : 서비스하는 모든 앱들을 총칭
+
+* web application context : 앱들의 각각의 공간, 영역(HELLO FLASK, MICROBLOG)
+
+* MVR : Model, View, Route
+
+* route : URI 를 정의하는 녀석
+
+* lazy_loading : 모든 것을 메모리에 올리지 않겠다. 필요할때 실행해 메모리에 올리겠다는 것
+
+* WSGI : Web Server Gateway(특정 포트를 붙들고 있는 것) Interface(대면 하고 있는 것, 플라스크의 기본 포트인 5000번 포트를 계속 처다본다)
+## flask 이해
+플라스크는 app, static, templates 등 정해진 양식의 폴더가 있다.
+
+### folder & file
+
+모든 웹앱은 request가 들어오면 그에 대한 response를 취하게 된다.
+* applciation : py 파일과 같이 특정한 연산을 한 후 response 하는 경우
+
+* static : img , css, javascript 등 연산없이 그대로 response하는 정적인 언어들을 static 이라고 한다.
+
+* templates(view) : html 파일들이 모여 있는 폴더
+
+* __init__.py : app의 모듈들의 시작지점, 모듈이 실행될때 자동으로 실행되는 파일이다.
+
+* microblog.py(앱의 이름) : 앱을 메모리와 프로세서에게 할당하는 녀석
+
+```python
+from app import create_app, db, cli 
+# 여기서 결국 app 폴더 안에 있는 __init__.py 을 실행시키는 거지만, 
+# 여기선 생략해서 사용할 수 있다. 앱이 실행될때 함께 실행되어 그렇다
+app = app.run() # 메모리에 올리는 과정
+```
+
+### flask global object : g
+
+```python
+from flask import g
+```
+여기서 **g** 는 전역변수이다.
 # CH.01 Hello, World!
 
 * FLASK_APP="app.py" : FLASK_APP은 서버를 실행할때 실행할 어플리케이션을 지정해주는 역할을 한다. 
