@@ -14,6 +14,8 @@
 
 * lazy_loading : 모든 것을 메모리에 올리지 않겠다. 필요할때 실행해 메모리에 올리겠다는 것
 
+* endpoint : 내 route의 URI를 뜻함
+
 * WSGI : Web Server Gateway(특정 포트를 붙들고 있는 것) Interface(대면 하고 있는 것, 플라스크의 기본 포트인 5000번 포트를 계속 처다본다)
 
 * Redirect : a.html로 접속했을때 b.html로 날려주는 것, 특정 url에 접근하면 목적지로 날려준다. 
@@ -50,6 +52,7 @@ from flask import g
 여기서 **g** 는 전역변수이다. 또한 이 값들은 application_context에 저장되어 app에 접근하는 모든 사람들이 공유하는 자원이 된다.
 
 ### Request Parameter
+Request는 기본이 string 형으로 되어있다. 다른 형태(int, list, etc...)로 사용하기 위해선 변환을 해줘야 한다.
 ```python
 
 # MultiDict Type
@@ -75,3 +78,55 @@ request.values.get('v')
 # Parameters
 request.args.getlist('qs')
 ```
+
+### Request Parameter Custom Function Type
+```python
+from datetime import datetime, date
+# request 처리 용 함수
+def ymd(fmt):
+    def trans(date_str):
+        return datetime.strptime(date_str, fmt)
+    return trans
+"""
+request.values.get이 실행되어 ymd 함수가 실행되면, return 값이 메서드인 trans이므로 trans 함수가 실행되어 연산을 시작한다.
+여기서 date_str의 값은 request.values.get의 인수인 'date'가 들어가게 된다. 이렇게 복잡하게 짜는 이유는 웹은 똑같은 함수를 여러 사용자가
+여러번 사용하는데 이런 상황에서 메모리 낭비를 방지하기 위한 목적이다.
+"""
+
+@app.route('/dt')
+def dt():
+    datestr = request.values.get('date', date.today(), type=ymd('%Y-%m-%d'))
+    return "우리나라 시간 형식: " + str(datestr)
+```
+
+### request.environ
+환경 변수를 request 해보자.
+```python
+return ('REQUEST_METHOD: %(REQUEST_METHOD) s <br>' # %가 여기서는 request.environ['REQUEST_METHOD']로 호출된다.
+        'SCRIPT_NAME: %(SCRIPT_NAME) s <br>'
+        'PATH_INFO: %(PATH_INFO) s <br>'
+        'QUERY_STRING: %(QUERY_STRING) s <br>'
+        'SERVER_NAME: %(SERVER_NAME) s <br>'
+        'SERVER_PORT: %(SERVER_PORT) s <br>'  
+        'SERVER_PROTOCOL: %(SERVER_PROTOCOL) s <br>'
+        'wsgi.version: %(wsgi.version) s <br>'
+        'wsgi.url_scheme: %(wsgi.url_scheme) s <br>'
+        'wsgi.input: %(wsgi.input) s <br>'
+        'wsgi.errors: %(wsgi.errors) s <br>'
+        'wsgi.multithread: %(wsgi.multithread) s <br>'
+        'wsgi.multiprocess: %(wsgi.multiprocess) s <br>'
+        'wsgi.run_once: %(wsgi.run_once) s') % request.environ
+```
+
+### request
+```
+request.is_xhr : xhr 이나 아니냐
+request.url
+request.path
+request.endpoint : URI를 가져옴
+request.get_json() : json의 data 부분을 가져온다
+app.config.update(MAX_CONTENT_LENGTH=1024*1024) : 최대로 가져올 수 있는 문자열의 길이는 1024*1024이다.
+request.max_content_length
+```
+----
+[참고자료](https://docs.google.com/presentation/d/1S9mMlAYCulzAO8j5x9uCZbMUif8cAJHSHt1avztqeVg/edit#slide=id.g4ec498ce8e_0_5) : 시니어 코딩 유튜브
