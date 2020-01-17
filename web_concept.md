@@ -128,5 +128,74 @@ request.get_json() : json의 data 부분을 가져온다
 app.config.update(MAX_CONTENT_LENGTH=1024*1024) : 최대로 가져올 수 있는 문자열의 길이는 1024*1024이다.
 request.max_content_length
 ```
+
+### Templates(flask 에선 Jinja)
+템플릿 엔진이란 ? 특정 언어(파이썬, JAVA, JS)등을 html(string, xml, json, image, video, etc..)로 변환시켜주는 녀석들
+
+#### trim_blocks(공백 제거)
+파이썬 코드로 인해 생기는 공백을 없애고 싶다면 양 사이드에 '-'을 붙여준다. %와 떨어져선 안되고 붙여줘야한다.
+
+```
+# ./templates/index.html
+<pre>
+ttt 한글
+{%- if True -%}
+    TTT
+{%- endif -%}qqq
+</pre>
+
+
+# invalid, '-'을 %와 붙여줘라.
+{% - if True - %}
+# Tip: nodemon watching the html
+nodemon start_helloflask.py -w helloflask/__init__.py -w helloflask/templates/index.html
+```
+
+#### escape
+single quotation(따옴표), double quotation(쌍따옴표) 에 관계 없이 사용하면 코드가 실행되지 않고 그대로 html로 표기된다.
+```
+# quotation escape
+{{ abc {ef} ghi }}  ⇒ {{ "abc {ef} ghi" }}
+{{ "}}>> <strong>Strong</strong>"}}    or   {{ '}}>> <strong>Strong</strong>' | escape }} # escpae 사용하기
+
+# cf. safe string & striptags  
+{{ "<strong>Strong1</strong>" | safe}} : 쌍따옴표 있어도 무시하고 코드로 내
+{{ "<strong>Strong2</strong>" | striptags}} : 
+
+# {% raw %} ~ {% endraw %} : display source code , Jinja와 Handlebars를 함께 사용할때 유용
+{% raw %}
+	{% if True  %}
+    		TTT
+	{% endif %}
+{% endraw %}
+```
+
+#### Markup
+
+코드 단에서 render_template을 통해서 보낼때, html코드를 통해 강조하고 싶은 경우 사용한다.
+
+```python
+# from flask import Markup
+return render_template("index.html", markup=Markup("<b>B</b>")) # 이때 markup은 Markup 객체로 전송한다.
+# Example: Markup()
+mu = Markup("<h1>iii = <i>%s</i></h1>")
+h = mu % "Italic"
+print("h=", h)
+"""
+ mu는 '%s'가 들어가 있어서 % 연산이 가능하다. 그래서 h에서 % "Italic"을 사용해 %s자리에 Italic를 넣을 수 있다.
+"""
+return render_template("index.html", markup=Markup(h))
+
+# Markup.escape() & unescape()
+bold = Markup("<b>Bold</b>")
+bold2 = Markup.escape("<b>Bold</b>")
+bold3 = bold2.unescape()
+
+print(bold, bold2, bold3)
+⇒ <b>Bold</b> &lt;b&gt;Bold&lt;/b&gt; <b>Bold</b>
+```
+
 ----
-[참고자료](https://docs.google.com/presentation/d/1S9mMlAYCulzAO8j5x9uCZbMUif8cAJHSHt1avztqeVg/edit#slide=id.g4ec498ce8e_0_5) : 시니어 코딩 유튜브
+## 참고 자료
+
+참고자료 : [시니어 코딩 유튜브](https://docs.google.com/presentation/d/1S9mMlAYCulzAO8j5x9uCZbMUif8cAJHSHt1avztqeVg/edit#slide=id.g4ec498ce8e_0_5)
