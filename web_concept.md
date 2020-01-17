@@ -195,6 +195,55 @@ print(bold, bold2, bold3)
 ⇒ <b>Bold</b> &lt;b&gt;Bold&lt;/b&gt; <b>Bold</b>
 ```
 
+#### FOR loop
+
+```
+# {% for var in iter %}  …  {% endfor %}
+{% for item in items %}
+	...item 처리..
+{% endfor %}
+# Example
+lst = [ ("만남1", "김건모"), ("만남2", "노사연") ]
+return render_template("index.html", lst=lst)
+
+<ul>
+    {% for item in lst %}
+        <li>{{item[0]}}: {{item[1]}}</li>
+    {% endfor %}
+</ul>
+
+{% for title, name in lst %} 
+    <li>{{title}}: {{name}}</li> => 더 직관성이 있는(친절한) 코드, 하지만 튜플의 경우 받아야 하는 변수가 2개 이상으로 늘어날 경우 오류 발생
+{% endfor %}
+```
+
+#### loop object
+```
+# for loop 속에서 기본으로 제공되는 object : `현재 for loop 의 self`
+- loop.index: 1부터 시작하는 index 값  (cf. loop.index0 : 0부터 시작하는 index)
+- loop.revindex: n~1 내림차순 index값  (cf. loop.revindex0 : 0 부터 시작하는 내림차순 index)
+- loop.first: boolean(isThisFirstItem), loop의 첫번째인지의 여부, 첫번째이면 True 반환
+- loop.last: boolean(isThisLastItem), loop의 마지막인지의 여부, 마지막이면 True 반환
+- loop.length: size, 리스트의 길이
+- loop.depth : loop 깊이 
+
+# loop.cycle (특정 주기로 수행)
+<ul>
+    {% for item in lst %}
+        <li class="{{loop.cycle('aaa', 'bbb')}}">{{item[0]}}: {{item[1]}}</li>
+    {% endfor %}
+</ul>
+```
+
+#### URL & Link
+```
+# url_for('folder', filename='filename.ext')
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+
+# url_for('router-link') : "/tmpl" 와 같은 방법을 사용해도 똑같다.
+Copyright <a href="/tmpl">IndiFlex Senior Coding</a>
+Copyright <a href="{{ url_for('tmpl') }}">IndiFlex Senior Coding</a>
+```
 ----
 ## 참고 자료
 
