@@ -38,7 +38,7 @@ redirect('/index') : /index 로 이동해라.
 * $flask db migrate : 데이터베이스를 변경하지 않고 마이그레이션 스크립트만 생성한다.(The flask db migrate command does not make any changes to the database, it just generates the migration script.) 저장소를 생성 하거나 데이터 베이스 스키마의 구조가 변경된
 경우 migrate를 통해서 변경 사항을 작성해야 한다.
 
-* $flask db upgrade : migrate를 통해 변경된 사항을 데이터베이스에 적용, MYSQL, Postgre 와 같이 DB server 작업시 실행하기 전에 데이터베이스를 DB server에 생성해야 함
+* $flask db upgrade : migrate를 통해 변경된 사항을 데이터베이스에 적용, MYSQL, Postgre 와 같이 DB server 작업시 실행하기 전에 데이터베이스를 DB server에 생성해야 한다. 
 
 * $flas db downgrade : 변경 사항을 되돌리고 싶을때 사용, upgrade를 undo 한다.
 
@@ -61,6 +61,8 @@ True
 >>> check_password_hash(hash, 'barfoo')
 False
 ```
+
+* flask-login : 로그인을 위한 플라스크 확장 라이브라리
 
 * filter_by : 결과는 일치하는 사용자 이름을 가진 객체 만을 포함하는 쿼리다.
 
