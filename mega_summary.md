@@ -80,6 +80,10 @@ False
 상용서버에서 사용하면 안된다. 해킹을 하고자 하는 유저들에게는 내부 소스코드를 보여주는 결과가 되어 뜻하지 않는 선물을 주게 되기 때문이다.
 디버그 모드를 해제하고 싶다면, 1을 0으로 바꾸어 실행해주자.
 
+# CH.08 Followers
+* backref=db.backref('followers', lazy='dynamic'), lazy='dynamic') : db.brackref(...)은 user 테이블이 followers 테이블을 역참조 할 때
+쓰인다. lazy='dynamic'의 경우 request가 있기 전에는 쿼리문을 작동하지 않는다는 의미이다. one-to-many 관계를 만드는 방법이다.
+
 # CH.09 
 
 * user.followed_posts().paginate(1, 20, False).items : 1페이지부터~ 20페이지까지, 지정된 페이지를 넘어간다면
