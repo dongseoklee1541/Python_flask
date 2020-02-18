@@ -66,6 +66,13 @@ False
 
 * filter_by : 결과는 일치하는 사용자 이름을 가진 객체 만을 포함하는 쿼리다.
 
+# CH.06 Profile Page and Avatars
+
+#### validate_on_submit()
+
+* True 인 경우 : browser가 POST 방식으로 request 했을때.
+
+* False 인 경우 : 두가지 상황이 존재한다. 첫째 browser가 GET 방식으로 request 한 경우와 둘째 browser가 POST 로 requset했지만, 해당 데이터의 내용이 잘못 됐을 경우다.
 
 # CH.07 Error Handling
 
