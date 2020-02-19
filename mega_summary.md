@@ -84,11 +84,20 @@ False
 * backref=db.backref('followers', lazy='dynamic'), lazy='dynamic') : db.brackref(...)은 user 테이블이 followers 테이블을 역참조 할 때
 쓰인다. lazy='dynamic'의 경우 request가 있기 전에는 쿼리문을 작동하지 않는다는 의미이다. one-to-many 관계를 만드는 방법이다.
 
-# CH.09 
+# CH.09 Pagination
+
+* Post/Redirect/Get : 사용자가 POST 요청을 보낸 상태에서 새로고침을 누르게 된다면, 다시 POST 요청을 하여 데이터가 중복될 수 있다.(쇼핑몰 중복 구매) 이를 방지하기 위해서, POST를 보낸 순간에 Redirect로 다른 경로를 보내고 GET 방식을 통해서 URL만 새로고침하여 POST를 중복으로 보내는 것을 방지
+하는 방법이다.
+
+* followed_posts() : User 클래스의 메소드로  유저가 db에서 관심이는 게시물을 가져올 수 있음 
 
 * user.followed_posts().paginate(1, 20, False).items : 1페이지부터~ 20페이지까지, 지정된 페이지를 넘어간다면
 True인 경우 404에러를 보내지만 False 인 경우 빈 화면을 내보낸다.
+  * paginate(a,b,c) a : starting page number / b : number of items per page / c: an error flag
 
+* Pagination class : item, has_next, has_prev, next_num, prev_num
+
+* url_for(url, query args...)
 # CH.12 I18n(국제화) and L10n(지역화)
 
 * from flask_babel import lazy_gettext as _l : 번역을 위해 텍스트를 추출(gettext)를 사용할때는 '_'을 사용하는 것이 convenction이다. 여기서는 lazy_gettext 를 사용하여 '_l'로 사용한다.
