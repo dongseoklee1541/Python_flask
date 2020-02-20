@@ -98,7 +98,13 @@ True인 경우 404에러를 보내지만 False 인 경우 빈 화면을 내보�
 * Pagination class : item, has_next, has_prev, next_num, prev_num
 
 * url_for(url, query args...)
-# CH.12 I18n(국제화) and L10n(지역화)
+
+# CH.12 Dates and Times
+* datetime.utcnow() : utc기준 시간
+  * datetime.now() : 내 지역 기준 시간
+  
+  
+# CH.13 I18n(국제화) and L10n(지역화)
 
 * from flask_babel import lazy_gettext as _l : 번역을 위해 텍스트를 추출(gettext)를 사용할때는 '_'을 사용하는 것이 convenction이다. 여기서는 lazy_gettext 를 사용하여 '_l'로 사용한다.
 
