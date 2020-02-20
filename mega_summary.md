@@ -106,7 +106,7 @@ True인 경우 404에러를 보내지만 False 인 경우 빈 화면을 내보�
   
 # CH.13 I18n(국제화) and L10n(지역화)
 
-* from flask_babel import lazy_gettext as _l : 번역을 위해 텍스트를 추출(gettext)를 사용할때는 '_'을 사용하는 것이 convenction이다. 여기서는 lazy_gettext 를 사용하여 '_l'로 사용한다.
+* from flask_babel import lazy_gettext as _l : lazy_gettext는 문자열이 실제로 사용될때 작동한다. 일반적으로 번역을 위해 텍스트를 추출(gettext)를 사용할때는 '_'을 사용하는 것이 관례이다. 여기서는 lazy_gettext 를 사용하여 '_l'로 사용한다. 
 
 ```python
 from flask_babel import lazy_gettext as _l
