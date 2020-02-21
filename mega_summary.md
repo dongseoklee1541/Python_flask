@@ -120,11 +120,16 @@ login.login_message = _l('Please log in to accesss this page.')
 
 -o meesages.pot 은 출력파일을 messages.pot 으로 출력하라는 의미이다.
 
-
 *$ pybabel init -i messages.pot -d app/translations -l es : pybabel을 통해서 번역해야 할 파일을 선택하고(-i message.pot)
 
 위치는 app/translations(기본 폴더)에 저장한다.(-d app/translations)
 
 번역하고 싶은 언어는 스페인어다.(-l es)
 
+* flask.g : provided by Flask is a place where the application can store data that needs to persist through the life of a request.
 
+# CH.14 Ajax
+
+* guess_language_spirit : 언어 감지를 위한 패키지
+
+* working with JavaScript : 
