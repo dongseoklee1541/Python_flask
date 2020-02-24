@@ -142,3 +142,5 @@ helps in organizing your code.
 * app.errorhandler vs bp.errorhandler : 둘 다 같은 결과를 나타내지만, 좀 더 독립적으로 사용하기 위해서 bp를 사용한다.
 
 * current_app : 현재 생성되어 있는 Flask 객체를 가리킨다. constructs a Flask application instance, factroy function.
+
+* db.create_all() : test.py 의 setUp()은 app을 실행하고 껍데기만 만들고 db.create_all()를 통해서 데이터베이스를 만든다.
