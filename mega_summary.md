@@ -133,3 +133,12 @@ login.login_message = _l('Please log in to accesss this page.')
 * guess_language_spirit : 언어 감지를 위한 패키지
 
 * working with JavaScript : 
+
+# CH.15 A Better Application Structure
+
+* blueprint : logical strcture that represents a subset of the application. as a temporary storage for application functionality that
+helps in organizing your code.
+
+* app.errorhandler vs bp.errorhandler : 둘 다 같은 결과를 나타내지만, 좀 더 독립적으로 사용하기 위해서 bp를 사용한다.
+
+* current_app : 현재 생성되어 있는 Flask 객체를 가리킨다. constructs a Flask application instance, factroy function.
