@@ -87,3 +87,11 @@ Traceback (most recent call last):
   File "c:\users\vuno\srv\learing.python\python\mypy\microblog\envflask\lib\site-packages\jinja2\parser.py", line 59, in fail
     raise exc(msg, lineno, self.name, self.filename)
 jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'end'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2020-03-03 13:13:23,949 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 13:18:48,961 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 13:24:31,110 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 13:42:50,447 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 13:43:27,919 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 13:44:00,796 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-03 15:50:01,270 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]
+2020-03-04 16:55:10,952 INFO: Microblog startup [in C:\Users\dlsef\Documents\GitHub\Python_flask\microblog\app\__init__.py:80]

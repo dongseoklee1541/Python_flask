@@ -88,8 +88,8 @@ def load_user(id):
     return User.query.get(int(id))
 
 class SearchableMixin(object): # cls.__tablename__는 여기서 index로 활용됨
-    @classmethod
-    def search(cls, expression, page, per_page):
+    @classmethod # special method that is associated with the class and not a particular instance.
+    def search(cls, expression, page, per_page): # cls : class에 의한 호출을 의미한다.
         ids, total = query_index(cls.__tablename__, expression, page, per_page)
         if total==0:
             return cls.query.filter_by(id=0), 0

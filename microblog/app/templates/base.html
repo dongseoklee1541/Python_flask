@@ -29,7 +29,7 @@
             <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             {% endif %}
           </ul>
-          {% if g.search_form %}
+          {% if g.search_form %} <!--form is rendered only if g.search_Form is defined-->
           <form class="navbar-form navbar-left" method="get"
                   action="{{ url_for('main.search') }}">
               <div class="form-group">
@@ -64,8 +64,7 @@
   {{ moment.lang(g.locale) }}
   <script>
       function translate(sourceElem, destElem, sourceLang, destLang){
-        $(destElem).html('<img src="{{ url_for('static', filename='loading.gif')
-}}">');
+        $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
         $.post('/translate',{
           text: $(sourceElem).text(),
           source_language: sourceLang,

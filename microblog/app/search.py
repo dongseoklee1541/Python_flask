@@ -30,5 +30,6 @@ def query_index(index, query, page, per_page):
         index = index,
         body={'query': {'multi_match': {'query': query, 'fields': ['*']}},
                'from': (page - 1) * per_page, 'size': per_page}) # 'fields' : ['*'] 는 es가 모든 필드를 보도록 지시 함(multi_match)
-    ids = [int(hit['_id']) for hit in search['hits']['hits']]
+    ids = [int(hit['_id']) for hit in search['hits']['hits']] # a list of id elements for the search results
     return ids, search['hits']['total']['value'] # id 번호들과, 찾아낸 총 개수
+
