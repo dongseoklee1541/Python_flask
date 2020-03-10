@@ -144,3 +144,8 @@ helps in organizing your code.
 * current_app : 현재 생성되어 있는 Flask 객체를 가리킨다. constructs a Flask application instance, factroy function.
 
 * db.create_all() : test.py 의 setUp()은 app을 실행하고 껍데기만 만들고 db.create_all()를 통해서 데이터베이스를 만든다.
+
+
+# CH.19 Deployment on Docker Containers 
+
+* 도커 이미지를 만드는 순서 : 파이썬 버전(FROM) - 실행할 계정 생성(RUN) - 디렉토리 설정 및 생성(WORKDIR) - 필요한 라이브러리 설치(COPY requirement.txt) - 가상환경 생성(RUN python) 
