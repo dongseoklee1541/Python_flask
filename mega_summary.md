@@ -149,3 +149,6 @@ helps in organizing your code.
 # CH.19 Deployment on Docker Containers 
 
 * 도커 이미지를 만드는 순서 : 파이썬 버전(FROM) - 실행할 계정 생성(RUN) - 디렉토리 설정 및 생성(WORKDIR) - 필요한 라이브러리 설치(COPY requirement.txt) - 가상환경 생성(RUN python) 
+
+* 도커 이미지 안에 데이터가 들어있다면(mysql과 같이) 컨테이너를 삭제할때 데이터도 함께 삭제가 된다. 이 상황은 도커의 이미지만 바꿔서 업데이트 하는 방식에 많은 방해 요소가 된다. 그러므로 데이터는 가급적 컨테이너 밖에(서버에) 저장해야 업데이트가 간편하다.
+
